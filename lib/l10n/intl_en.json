@@ -16,5 +16,10 @@
   "perCaratRate": "Per Carat Rate",
   "finalAmount": "Final Amount",
   "keyToSymbol": "KeyToSymbol",
-  "labComment": "Lab Comment"
+  "labComment": "Lab Comment",
+  "diamondList": "Diamond List",
+  "search": "Search",
+  "filter_diamonds":"Filter Diamonds",
+  "noDataFound": "No Data Found",
+  "filtered_diamonds": "Filtered Diamonds"
 }

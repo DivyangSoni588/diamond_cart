@@ -1,4 +1,7 @@
+import 'package:diamond_cart/src/home/domain/entities/diamond_filter_entity.dart';
 import 'package:diamond_cart/src/home/presentation/views/pages/diamond_list_screen.dart';
+import 'package:diamond_cart/src/home/presentation/views/pages/filter_diamond_screen.dart';
+import 'package:diamond_cart/src/home/presentation/views/pages/filtered_diamond_result_screen.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -7,6 +10,20 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case DiamondListScreen.routeName:
       return _pageBuilder((_) => const DiamondListScreen(), settings: settings);
+    case FilterDiamondScreen.routeName:
+      return _pageBuilder(
+        (_) => const FilterDiamondScreen(),
+        settings: settings,
+      );
+    case FilteredDiamondResultScreen.routeName:
+      final DiamondFilterEntity diamondFilterEntity =
+          args as DiamondFilterEntity;
+      return _pageBuilder(
+        (_) => FilteredDiamondResultScreen(
+          diamondFilterEntity: diamondFilterEntity,
+        ),
+        settings: settings,
+      );
     default:
       return _pageBuilder((_) => const Placeholder(), settings: settings);
   }

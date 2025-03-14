@@ -2,6 +2,10 @@ class AppStringKeys {
   const AppStringKeys._();
 
   static const String appName = 'app_name';
+  static const String filteredDiamonds = 'filtered_diamonds';
+  static const String search = 'search';
+  static const String noDataFound = 'noDataFound';
+  static const String diamondList = 'diamondList';
   static const String quantity = 'qty';
   static const String lotId = 'lot_id';
   static const String size = 'size';
@@ -19,4 +23,5 @@ class AppStringKeys {
   static const String finalAmount = 'finalAmount';
   static const String keyToSymbol = 'keyToSymbol';
   static const String labComment = 'labComment';
+  static const String filterDiamonds = 'filter_diamonds';
 }

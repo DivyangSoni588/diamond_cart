@@ -1,6 +1,6 @@
 import 'package:diamond_cart/src/home/domain/usecases/get_all_diamonds_usecase.dart';
-import 'package:diamond_cart/src/home/presentation/bloc/diamond_event.dart';
-import 'package:diamond_cart/src/home/presentation/bloc/diamond_state.dart';
+import 'package:diamond_cart/src/home/presentation/diamond_bloc/diamond_event.dart';
+import 'package:diamond_cart/src/home/presentation/diamond_bloc/diamond_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 

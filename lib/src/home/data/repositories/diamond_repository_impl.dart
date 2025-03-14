@@ -1,5 +1,6 @@
 import 'package:diamond_cart/src/home/data/data_sources/diamond_data_source.dart';
 import 'package:diamond_cart/src/home/domain/entities/diamond_data.dart';
+import 'package:diamond_cart/src/home/domain/entities/diamond_filter_entity.dart';
 import 'package:diamond_cart/src/home/domain/repositories/diamond_repository.dart';
 
 class DiamondRepositoryImpl implements DiamondRepository {
@@ -15,14 +16,11 @@ class DiamondRepositoryImpl implements DiamondRepository {
 
   @override
   Future<List<Diamonds>> getDiamondsByFilter({
-    String? shape,
-    String? color,
-    String? clarity,
-    String? cut,
-    double? minCarat,
-    double? maxCarat,
-  }) {
-    // TODO: implement getDiamondsByFilter
-    throw UnimplementedError();
+    DiamondFilterEntity? diamondFilterEntity,
+  }) async {
+    final diamondData = await dataSource.getFilteredDiamondData(
+      diamondFilterEntity: diamondFilterEntity,
+    );
+    return diamondData.diamonds ?? [];
   }
 }
