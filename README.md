@@ -53,8 +53,8 @@ The project is organized into a **clean and scalable architecture** with the fol
 ### **Clone the Repository**
 
 ```sh
-git clone https://github.com/your-username/diamond-cart-app.git
-cd diamond-cart-app
+git clone git@github.com:DivyangSoni588/diamond_cart.git
+cd diamond_cart
 ```
 
 ### **Install Dependencies**
