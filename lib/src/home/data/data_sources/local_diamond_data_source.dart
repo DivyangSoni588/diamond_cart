@@ -11,6 +11,9 @@ class LocalDiamondDataSource implements DiamondDataSource {
   @override
   Future<DiamondData> getDiamondData() async {
     _diamondData ??= DiamondData.fromJson(diamondData);
+
+    await updateDiamondData();
+
     return _diamondData!;
   }
 
@@ -18,6 +21,8 @@ class LocalDiamondDataSource implements DiamondDataSource {
   Future<DiamondData> getFilteredDiamondData({
     DiamondFilterEntity? diamondFilterEntity,
   }) async {
+    await updateDiamondData();
+
     final allDiamonds = _diamondData;
 
     final filteredDiamonds =
@@ -60,7 +65,9 @@ class LocalDiamondDataSource implements DiamondDataSource {
   @override
   Future<void> addDiamondToCart({Diamonds? diamond}) {
     if (diamond != null) {
-      HiveManager.addToCart(DiamondMapper.toHive(diamond));
+      HiveManager.addToCart(
+        DiamondMapper.toHive(diamond.copyWith(addedToCart: true)),
+      );
     }
     return Future.value();
   }
@@ -79,5 +86,43 @@ class LocalDiamondDataSource implements DiamondDataSource {
       HiveManager.removeFromCart(lotId);
     }
     return Future.value();
+  }
+
+  Future<void> updateDiamondData() async {
+    final alreadyAddedToCartDiamonds = await getAddedToCartDiamondData();
+
+    final updatedDiamonds =
+        _diamondData?.diamonds?.map((diamond) {
+          // Check if the current diamond is already in the cart
+          final isAlreadyInCart =
+              alreadyAddedToCartDiamonds.diamonds?.any(
+                (cartDiamond) => cartDiamond.lotID == diamond.lotID,
+              ) ??
+              false;
+
+          return Diamonds(
+            qty: diamond.qty,
+            lotID: diamond.lotID,
+            size: diamond.size,
+            carat: diamond.carat,
+            lab: diamond.lab,
+            shape: diamond.shape,
+            color: diamond.color,
+            clarity: diamond.clarity,
+            cut: diamond.cut,
+            polish: diamond.polish,
+            symmetry: diamond.symmetry,
+            fluorescence: diamond.fluorescence,
+            discount: diamond.discount,
+            perCaratRate: diamond.perCaratRate,
+            finalAmount: diamond.finalAmount,
+            keyToSymbol: diamond.keyToSymbol,
+            labComment: diamond.labComment,
+            addedToCart: isAlreadyInCart, // ✅ Set true if found in the cart
+          );
+        }).toList() ??
+        [];
+
+    _diamondData = DiamondData(diamonds: updatedDiamonds);
   }
 }

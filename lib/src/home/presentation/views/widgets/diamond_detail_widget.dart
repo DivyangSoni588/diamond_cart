@@ -2,13 +2,21 @@ import 'package:diamond_cart/core/extensions/context_extension.dart';
 import 'package:diamond_cart/core/resources/app_colors.dart';
 import 'package:diamond_cart/core/resources/app_string_keys.dart';
 import 'package:diamond_cart/core/resources/app_text_style.dart';
+import 'package:diamond_cart/core/widgets/app_text_widget.dart';
 import 'package:diamond_cart/src/home/domain/entities/diamond_data.dart';
 import 'package:flutter/material.dart';
 
 class DiamondDetailWidget extends StatelessWidget {
   final Diamonds diamonds;
+  final VoidCallback onTapOfAddOrRemoveFromCart;
+  final bool showListing;
 
-  const DiamondDetailWidget({super.key, required this.diamonds});
+  const DiamondDetailWidget({
+    super.key,
+    required this.diamonds,
+    required this.onTapOfAddOrRemoveFromCart,
+    this.showListing = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +131,20 @@ class DiamondDetailWidget extends StatelessWidget {
               label: AppStringKeys.labComment,
             ),
             SizedBox(height: 6),
+            if (!showListing)
+              Align(
+                alignment: Alignment.center,
+                child: ElevatedButton(
+                  onPressed: onTapOfAddOrRemoveFromCart,
+                  child: AppTextWidget(
+                    text:
+                        (diamonds.addedToCart ?? false)
+                            ? AppStringKeys.removeFromCart
+                            : AppStringKeys.addToCart,
+                    textStyle: AppTextStyle.normalFont,
+                  ),
+                ),
+              ),
           ],
         ),
       ),

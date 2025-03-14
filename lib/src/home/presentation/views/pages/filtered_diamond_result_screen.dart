@@ -2,7 +2,10 @@ import 'package:diamond_cart/core/constants/app_route_constants.dart';
 import 'package:diamond_cart/core/resources/app_string_keys.dart';
 import 'package:diamond_cart/core/resources/app_text_style.dart';
 import 'package:diamond_cart/core/widgets/app_text_widget.dart';
+import 'package:diamond_cart/src/home/domain/entities/diamond_data.dart';
 import 'package:diamond_cart/src/home/domain/entities/diamond_filter_entity.dart';
+import 'package:diamond_cart/src/home/presentation/cart_bloc/diamond_cart_bloc.dart';
+import 'package:diamond_cart/src/home/presentation/cart_bloc/diamond_cart_event.dart';
 import 'package:diamond_cart/src/home/presentation/diamond_filter_result_bloc/diamond_filter_result_bloc.dart';
 import 'package:diamond_cart/src/home/presentation/views/widgets/diamond_detail_widget.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +68,24 @@ class _FilteredDiamondResultScreenState
             return ListView.builder(
               itemCount: state.diamonds.length,
               itemBuilder: (context, index) {
-                return DiamondDetailWidget(diamonds: state.diamonds[index]);
+                final Diamonds diamond = state.diamonds[index];
+                return DiamondDetailWidget(
+                  diamonds: diamond,
+                  onTapOfAddOrRemoveFromCart: () {
+                    if (diamond.addedToCart ?? false) {
+                      context.read<DiamondCartBloc>().add(
+                        RemoveDiamondFromCartEvent(diamond.lotID ?? ''),
+                      );
+                    } else {
+                      context.read<DiamondCartBloc>().add(
+                        AddDiamondToCartEvent(diamond),
+                      );
+                    }
+                    context.read<DiamondFilterResultBloc>().add(
+                      ApplyDiamondFilter(widget.diamondFilterEntity),
+                    );
+                  },
+                );
               },
             );
           } else if (state is DiamondFilterResultError) {

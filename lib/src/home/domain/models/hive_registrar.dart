@@ -55,6 +55,8 @@ class Diamond extends HiveObject with EquatableMixin {
 
   @HiveField(16)
   final String labComment;
+  @HiveField(17)
+  final bool addedToCart;
 
   Diamond({
     required this.qty,
@@ -74,6 +76,7 @@ class Diamond extends HiveObject with EquatableMixin {
     required this.finalAmount,
     required this.keyToSymbol,
     required this.labComment,
+    required this.addedToCart,
   });
 
   factory Diamond.fromJson(Map<String, dynamic> json) {
@@ -95,6 +98,7 @@ class Diamond extends HiveObject with EquatableMixin {
       finalAmount: json['Final Amount'],
       keyToSymbol: json['Key To Symbol'],
       labComment: json['Lab Comment'],
+      addedToCart: json['addedToCart'],
     );
   }
 
@@ -117,6 +121,7 @@ class Diamond extends HiveObject with EquatableMixin {
       'Final Amount': finalAmount,
       'Key To Symbol': keyToSymbol,
       'Lab Comment': labComment,
+      'addedToCart': addedToCart,
     };
   }
 

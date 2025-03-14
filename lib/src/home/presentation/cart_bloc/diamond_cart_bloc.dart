@@ -1,11 +1,10 @@
 import 'package:diamond_cart/src/home/domain/usecases/add_to_cart_usecase.dart';
 import 'package:diamond_cart/src/home/domain/usecases/get_cart_diamonds.dart';
 import 'package:diamond_cart/src/home/domain/usecases/remove_from_cart_usecase.dart';
+import 'package:diamond_cart/src/home/presentation/cart_bloc/diamond_cart_event.dart';
+import 'package:diamond_cart/src/home/presentation/cart_bloc/diamond_cart_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-
-import 'diamond_cart_event.dart';
-import 'diamond_cart_state.dart';
 
 class DiamondCartBloc extends Bloc<DiamondCartEvent, DiamondCartState> {
   final AddToCartUseCase addToCartUseCase =

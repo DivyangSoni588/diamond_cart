@@ -7,6 +7,6 @@ class GetCartDiamonds {
   GetCartDiamonds(this.repository);
 
   Future<List<Diamonds>> execute(String? lotId) async {
-    return repository.getAllDiamonds();
+    return repository.getAllDiamondsAddedToCart();
   }
 }

@@ -39,6 +39,7 @@ class Diamonds {
   num? finalAmount;
   String? keyToSymbol;
   String? labComment;
+  bool? addedToCart;
 
   Diamonds({
     this.qty,
@@ -58,7 +59,49 @@ class Diamonds {
     this.finalAmount,
     this.keyToSymbol,
     this.labComment,
+    this.addedToCart = false,
   });
+  Diamonds copyWith({
+    num? qty,
+    String? lotID,
+    String? size,
+    num? carat,
+    String? lab,
+    String? shape,
+    String? color,
+    String? clarity,
+    String? cut,
+    String? polish,
+    String? symmetry,
+    String? fluorescence,
+    num? discount,
+    num? perCaratRate,
+    num? finalAmount,
+    String? keyToSymbol,
+    String? labComment,
+    bool? addedToCart,
+  }) {
+    return Diamonds(
+      qty: qty ?? this.qty,
+      lotID: lotID ?? this.lotID,
+      size: size ?? this.size,
+      carat: carat ?? this.carat,
+      lab: lab ?? this.lab,
+      shape: shape ?? this.shape,
+      color: color ?? this.color,
+      clarity: clarity ?? this.clarity,
+      cut: cut ?? this.cut,
+      polish: polish ?? this.polish,
+      symmetry: symmetry ?? this.symmetry,
+      fluorescence: fluorescence ?? this.fluorescence,
+      discount: discount ?? this.discount,
+      perCaratRate: perCaratRate ?? this.perCaratRate,
+      finalAmount: finalAmount ?? this.finalAmount,
+      keyToSymbol: keyToSymbol ?? this.keyToSymbol,
+      labComment: labComment ?? this.labComment,
+      addedToCart: addedToCart ?? this.addedToCart,
+    );
+  }
 
   Diamonds.fromJson(Map<String, dynamic> json) {
     qty = json['Qty'];
@@ -78,6 +121,7 @@ class Diamonds {
     finalAmount = json['Final Amount'];
     keyToSymbol = json['Key To Symbol'];
     labComment = json['Lab Comment'];
+    addedToCart = json['addedToCart'] ?? false;
   }
 
   Map<String, dynamic> toJson() {

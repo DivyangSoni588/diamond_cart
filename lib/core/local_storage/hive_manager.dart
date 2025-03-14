@@ -1,13 +1,13 @@
-import 'dart:io';
-
 import 'package:diamond_cart/src/home/domain/models/hive_registrar.dart';
 import 'package:hive_ce/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 class HiveManager {
   static const String boxName = 'diamondCartBox';
 
   static Future<void> init() async {
-    Hive.init(Directory.current.path);
+    final String path = (await getApplicationDocumentsDirectory()).path;
+    Hive.init(path);
     Hive.registerAdapter(DiamondAdapter());
     await Hive.openBox<Diamond>(boxName);
   }

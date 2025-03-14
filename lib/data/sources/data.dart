@@ -54,8 +54,7 @@ final Map<String, dynamic> diamondData = {
       "Per Carat Rate": 3445.68,
       "Final Amount": 3445.68,
       "Key To Symbol": "Cloud, Pinpoint, Indented Natural",
-      "Lab Comment":
-          "Additional pinpoints are not shown. Surface graining is not shown.",
+      "Lab Comment": "Additional pinpoints are not shown. Surface graining is not shown.",
     },
     {
       "Qty": 1,
@@ -129,8 +128,7 @@ final Map<String, dynamic> diamondData = {
       "Per Carat Rate": 3628.24,
       "Final Amount": 4353.888,
       "Key To Symbol": "Crystal, Cloud, Needle",
-      "Lab Comment":
-          "Additional clouds are not shown. Pinpoints are not shown.",
+      "Lab Comment": "Additional clouds are not shown. Pinpoints are not shown.",
     },
     {
       "Qty": 1,
@@ -485,8 +483,7 @@ final Map<String, dynamic> diamondData = {
       "Per Carat Rate": 7750,
       "Final Amount": 15500,
       "Key To Symbol": "Cloud, Crystal, Feather, Needle, Natural",
-      "Lab Comment":
-          "Additional clouds are not shown. Pinpoints are not shown.",
+      "Lab Comment": "Additional clouds are not shown. Pinpoints are not shown.",
     },
     {
       "Qty": 1,
@@ -505,8 +502,7 @@ final Map<String, dynamic> diamondData = {
       "Per Carat Rate": 8250,
       "Final Amount": 16500,
       "Key To Symbol": "Crystal, Cloud, Indented Natural, Natural",
-      "Lab Comment":
-          "Additional clouds, pinpoints and surface graining are not shown.",
+      "Lab Comment": "Additional clouds, pinpoints and surface graining are not shown.",
     },
     {
       "Qty": 1,
@@ -543,10 +539,8 @@ final Map<String, dynamic> diamondData = {
       "Discount": -51,
       "Per Carat Rate": 6027,
       "Final Amount": 12114.27,
-      "Key To Symbol":
-          "Crystal, Twinning Wisp, Feather, Needle, Indented Natural",
-      "Lab Comment":
-          "Additional twinning wisps, pinpoints and surface graining are not shown.",
+      "Key To Symbol": "Crystal, Twinning Wisp, Feather, Needle, Indented Natural",
+      "Lab Comment": "Additional twinning wisps, pinpoints and surface graining are not shown.",
     },
     {
       "Qty": 1,
@@ -711,8 +705,7 @@ final Map<String, dynamic> diamondData = {
       "Discount": -52,
       "Per Carat Rate": 12542.4,
       "Final Amount": 25210.224,
-      "Lab Comment":
-          "Additional clouds are not shown. Pinpoints are not shown.",
+      "Lab Comment": "Additional clouds are not shown. Pinpoints are not shown.",
     },
     {
       "Qty": 1,
@@ -729,8 +722,7 @@ final Map<String, dynamic> diamondData = {
       "Discount": -55.05,
       "Per Carat Rate": 8990,
       "Final Amount": 18609.3,
-      "Lab Comment":
-          "Internal graining is not shown. Surface graining is not shown.",
+      "Lab Comment": "Internal graining is not shown. Surface graining is not shown.",
     },
     {
       "Qty": 1,
@@ -1408,8 +1400,7 @@ final Map<String, dynamic> diamondData = {
       "Per Carat Rate": 1840,
       "Final Amount": 3128,
       "Key To Symbol": "Cloud, Needle, Indented Natural, Natural",
-      "Lab Comment":
-          "Additional clouds are not shown. Pinpoints are not shown.",
+      "Lab Comment": "Additional clouds are not shown. Pinpoints are not shown.",
     },
     {
       "Qty": 1,

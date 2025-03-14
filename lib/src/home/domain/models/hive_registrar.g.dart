@@ -34,13 +34,14 @@ class DiamondAdapter extends TypeAdapter<Diamond> {
       finalAmount: fields[14] as num,
       keyToSymbol: fields[15] as String,
       labComment: fields[16] as String,
+      addedToCart: fields[17] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Diamond obj) {
     writer
-      ..writeByte(17)
+      ..writeByte(18)
       ..writeByte(0)
       ..write(obj.qty)
       ..writeByte(1)
@@ -74,7 +75,9 @@ class DiamondAdapter extends TypeAdapter<Diamond> {
       ..writeByte(15)
       ..write(obj.keyToSymbol)
       ..writeByte(16)
-      ..write(obj.labComment);
+      ..write(obj.labComment)
+      ..writeByte(17)
+      ..write(obj.addedToCart);
   }
 
   @override

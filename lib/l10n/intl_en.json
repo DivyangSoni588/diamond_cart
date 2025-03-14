@@ -21,5 +21,12 @@
   "search": "Search",
   "filter_diamonds":"Filter Diamonds",
   "noDataFound": "No Data Found",
-  "filtered_diamonds": "Filtered Diamonds"
+  "filtered_diamonds": "Filtered Diamonds",
+  "cart": "Cart",
+  "addToCart": "Add to Cart",
+  "total_carat":"Total Carat",
+  "total_price": "Total Price",
+  "average_price": "Average Price",
+  "average_discount": "Average Discount",
+  "removeFromCart": "Remove From Cart"
 }

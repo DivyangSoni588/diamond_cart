@@ -23,6 +23,7 @@ class DiamondMapper {
       finalAmount: diamond.finalAmount,
       keyToSymbol: diamond.keyToSymbol,
       labComment: diamond.labComment,
+      addedToCart: diamond.addedToCart,
     );
   }
 
@@ -45,6 +46,7 @@ class DiamondMapper {
       finalAmount: diamond.finalAmount ?? 0,
       keyToSymbol: diamond.keyToSymbol ?? '',
       labComment: diamond.labComment ?? '',
+      addedToCart: diamond.addedToCart ?? false,
     );
   }
 }

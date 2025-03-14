@@ -2,7 +2,12 @@ class AppStringKeys {
   const AppStringKeys._();
 
   static const String appName = 'app_name';
+  static const String totalCarat = 'total_carat';
+  static const String totalPrice = 'total_price';
+  static const String averagePrice = 'average_price';
+  static const String averageDiscount = 'average_discount';
   static const String filteredDiamonds = 'filtered_diamonds';
+  static const String cart = 'cart';
   static const String search = 'search';
   static const String noDataFound = 'noDataFound';
   static const String diamondList = 'diamondList';
@@ -24,4 +29,6 @@ class AppStringKeys {
   static const String keyToSymbol = 'keyToSymbol';
   static const String labComment = 'labComment';
   static const String filterDiamonds = 'filter_diamonds';
+  static const String addToCart = 'addToCart';
+  static const String removeFromCart = 'removeFromCart';
 }

@@ -4,6 +4,7 @@ import 'package:diamond_cart/core/services/router.dart';
 import 'package:diamond_cart/core/theme/app_theme.dart';
 import 'package:diamond_cart/l10n/app_localization.dart';
 import 'package:diamond_cart/src/home/presentation/cart_bloc/diamond_cart_bloc.dart';
+import 'package:diamond_cart/src/home/presentation/diamond_bloc/diamond_bloc.dart';
 import 'package:diamond_cart/src/home/presentation/diamond_filter_result_bloc/diamond_filter_result_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,7 @@ void main() async {
           create: (context) => DiamondFilterResultBloc(),
         ),
         BlocProvider<DiamondCartBloc>(create: (context) => DiamondCartBloc()),
+        BlocProvider<DiamondBloc>(create: (context) => DiamondBloc()),
       ],
       child: DiamondCartApp(),
     ),

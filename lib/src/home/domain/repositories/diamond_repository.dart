@@ -12,5 +12,5 @@ abstract class DiamondRepository {
 
   Future<void> addDiamondToCart({Diamonds? diamonds});
 
-  Future<void> getAllDiamondsAddedToCart();
+  Future<List<Diamonds>> getAllDiamondsAddedToCart();
 }

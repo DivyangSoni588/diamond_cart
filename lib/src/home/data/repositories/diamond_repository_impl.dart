@@ -26,19 +26,23 @@ class DiamondRepositoryImpl implements DiamondRepository {
 
   @override
   Future<void> addDiamondToCart({Diamonds? diamonds}) {
-    // TODO: implement addDiamondToCart
-    throw UnimplementedError();
+    if (diamonds != null) {
+      dataSource.addDiamondToCart(diamond: diamonds);
+    }
+    return Future.value();
   }
 
   @override
-  Future<void> getAllDiamondsAddedToCart() {
-    // TODO: implement getAllDiamondsAddedToCart
-    throw UnimplementedError();
+  Future<List<Diamonds>> getAllDiamondsAddedToCart() async {
+    final diamondData = await dataSource.getAddedToCartDiamondData();
+    return diamondData.diamonds ?? [];
   }
 
   @override
   Future<void> removeDiamondFromCart({String? lotId}) {
-    // TODO: implement removeDiamondFromCart
-    throw UnimplementedError();
+    if (lotId != null) {
+      dataSource.removeDiamondFromCart(lotId: lotId);
+    }
+    return Future.value();
   }
 }
