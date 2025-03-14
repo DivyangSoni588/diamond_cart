@@ -1,3 +1,20 @@
 {
-  "app_name": "Diamond Cart"
+  "app_name": "Diamond Cart",
+  "qty": "Qty",
+  "lot_id": "LotID",
+  "size": "Size",
+  "carat": "Carat",
+  "lab": "Lab",
+  "shape": "Shape",
+  "color": "Color",
+  "clarity": "Clarity",
+  "cut": "Cut",
+  "polish": "Polish",
+  "symmetry": "Symmetry",
+  "fluorescence": "Fluorescence",
+  "discount": "Discount",
+  "perCaratRate": "Per Carat Rate",
+  "finalAmount": "Final Amount",
+  "keyToSymbol": "KeyToSymbol",
+  "labComment": "Lab Comment"
 }

@@ -6,4 +6,8 @@ class AppTextStyle {
     fontSize: 14,
     color: AppColors.whiteColor,
   );
+  static const TextStyle regularFont = TextStyle(
+    fontSize: 12,
+    color: AppColors.blackColor,
+  );
 }

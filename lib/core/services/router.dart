@@ -1,12 +1,12 @@
-import 'package:diamond_cart/src/home/presentation/views/home_page.dart';
+import 'package:diamond_cart/src/home/presentation/views/pages/diamond_list_screen.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   final args = settings.arguments;
 
   switch (settings.name) {
-    case HomePage.routeName:
-      return _pageBuilder((_) => const HomePage(), settings: settings);
+    case DiamondListScreen.routeName:
+      return _pageBuilder((_) => const DiamondListScreen(), settings: settings);
     default:
       return _pageBuilder((_) => const Placeholder(), settings: settings);
   }

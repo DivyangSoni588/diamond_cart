@@ -1,10 +1,14 @@
+import 'package:diamond_cart/core/services/injection_container.dart';
 import 'package:diamond_cart/core/services/router.dart';
 import 'package:diamond_cart/core/theme/app_theme.dart';
 import 'package:diamond_cart/l10n/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await initDependencies();
   runApp(const DiamondCartApp());
 }
 
