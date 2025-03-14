@@ -56,7 +56,10 @@ class FilterDiamondScreen extends StatelessWidget {
                             .map(
                               (lab) => DropdownMenuItem(
                                 value: lab,
-                                child: Text(lab),
+                                child: Text(
+                                  lab,
+                                  style: AppTextStyle.regularFont,
+                                ),
                               ),
                             )
                             .toList(),
@@ -73,7 +76,10 @@ class FilterDiamondScreen extends StatelessWidget {
                             .map(
                               (shape) => DropdownMenuItem(
                                 value: shape,
-                                child: Text(shape),
+                                child: Text(
+                                  shape,
+                                  style: AppTextStyle.regularFont,
+                                ),
                               ),
                             )
                             .toList(),
@@ -91,7 +97,10 @@ class FilterDiamondScreen extends StatelessWidget {
                             .map(
                               (color) => DropdownMenuItem(
                                 value: color,
-                                child: Text(color),
+                                child: Text(
+                                  color,
+                                  style: AppTextStyle.regularFont,
+                                ),
                               ),
                             )
                             .toList(),

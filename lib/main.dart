@@ -36,8 +36,7 @@ class DiamondCartApp extends StatelessWidget {
     return MaterialApp(
       title: 'Diamond Cart',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: AppTheme.appTheme,
       themeMode: ThemeMode.system,
       localizationsDelegates: const [
         AppLocalizations.delegate,

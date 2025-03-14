@@ -21,6 +21,7 @@ class DiamondDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: AppColors.whiteColor,
       elevation: 10,
       shape: Border.all(color: AppColors.blackColor),
       margin: EdgeInsets.all(12),
