@@ -12,24 +12,34 @@ class FilteredDiamondResultScreen extends StatefulWidget {
   static const routeName = AppRouteConstants.filteredDiamondResultScreen;
   final DiamondFilterEntity diamondFilterEntity;
 
-  const FilteredDiamondResultScreen({super.key, required this.diamondFilterEntity});
+  const FilteredDiamondResultScreen({
+    super.key,
+    required this.diamondFilterEntity,
+  });
 
   @override
-  State<FilteredDiamondResultScreen> createState() => _FilteredDiamondResultScreenState();
+  State<FilteredDiamondResultScreen> createState() =>
+      _FilteredDiamondResultScreenState();
 }
 
-class _FilteredDiamondResultScreenState extends State<FilteredDiamondResultScreen> {
+class _FilteredDiamondResultScreenState
+    extends State<FilteredDiamondResultScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<DiamondFilterResultBloc>().add(ApplyDiamondFilter(widget.diamondFilterEntity));
+    context.read<DiamondFilterResultBloc>().add(
+      ApplyDiamondFilter(widget.diamondFilterEntity),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: AppTextWidget(text: AppStringKeys.filteredDiamonds, textStyle: AppTextStyle.boldFont),
+        title: AppTextWidget(
+          text: AppStringKeys.filteredDiamonds,
+          textStyle: AppTextStyle.boldFont,
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -59,7 +69,12 @@ class _FilteredDiamondResultScreenState extends State<FilteredDiamondResultScree
               },
             );
           } else if (state is DiamondFilterResultError) {
-            return Center(child: Text(state.message, style: const TextStyle(color: Colors.red)));
+            return Center(
+              child: Text(
+                state.message,
+                style: const TextStyle(color: Colors.red),
+              ),
+            );
           }
           return const Center(child: Text("Apply filters to see results."));
         },
@@ -68,7 +83,9 @@ class _FilteredDiamondResultScreenState extends State<FilteredDiamondResultScree
   }
 
   void _showSortModal(BuildContext context) {
-    final diamondFilterResultBloc = BlocProvider.of<DiamondFilterResultBloc>(context);
+    final diamondFilterResultBloc = BlocProvider.of<DiamondFilterResultBloc>(
+      context,
+    );
 
     final List<String> sortOptions = [
       'Final Price (Asc)',
@@ -79,7 +96,9 @@ class _FilteredDiamondResultScreenState extends State<FilteredDiamondResultScree
 
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
       builder: (bottomSheetContext) {
         return BlocProvider.value(
           // ✅ Pass the existing Bloc instance
@@ -90,13 +109,18 @@ class _FilteredDiamondResultScreenState extends State<FilteredDiamondResultScree
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Sort by:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text(
+                  'Sort by:',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
                 SizedBox(height: 10),
                 ...sortOptions.map(
                   (option) => ListTile(
                     title: Text(option),
                     onTap: () {
-                      diamondFilterResultBloc.add(SortDiamonds(option)); // ✅ Trigger sorting
+                      diamondFilterResultBloc.add(
+                        SortDiamonds(option),
+                      ); // ✅ Trigger sorting
                       Navigator.pop(context);
                     },
                   ),

@@ -1,7 +1,9 @@
+import 'package:diamond_cart/core/local_storage/hive_manager.dart';
 import 'package:diamond_cart/data/sources/data.dart';
 import 'package:diamond_cart/src/home/data/data_sources/diamond_data_source.dart';
 import 'package:diamond_cart/src/home/domain/entities/diamond_data.dart';
 import 'package:diamond_cart/src/home/domain/entities/diamond_filter_entity.dart';
+import 'package:diamond_cart/src/home/domain/mappers/diamond_mapper.dart';
 
 class LocalDiamondDataSource implements DiamondDataSource {
   DiamondData? _diamondData;
@@ -53,5 +55,29 @@ class LocalDiamondDataSource implements DiamondDataSource {
         }).toList();
 
     return DiamondData(diamonds: filteredDiamonds ?? []);
+  }
+
+  @override
+  Future<void> addDiamondToCart({Diamonds? diamond}) {
+    if (diamond != null) {
+      HiveManager.addToCart(DiamondMapper.toHive(diamond));
+    }
+    return Future.value();
+  }
+
+  @override
+  Future<DiamondData> getAddedToCartDiamondData() async {
+    final diamonds = HiveManager.getCartItems();
+    final diamondData =
+        diamonds.map((diamond) => DiamondMapper.fromHive(diamond)).toList();
+    return DiamondData(diamonds: diamondData);
+  }
+
+  @override
+  Future<void> removeDiamondFromCart({String? lotId}) {
+    if (lotId != null) {
+      HiveManager.removeFromCart(lotId);
+    }
+    return Future.value();
   }
 }

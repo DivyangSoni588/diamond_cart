@@ -6,4 +6,10 @@ abstract class DiamondDataSource {
   Future<DiamondData> getFilteredDiamondData({
     DiamondFilterEntity? diamondFilterEntity,
   });
+
+  Future<DiamondData> getAddedToCartDiamondData();
+
+  Future<void> removeDiamondFromCart({String? lotId});
+
+  Future<void> addDiamondToCart({Diamonds diamond});
 }

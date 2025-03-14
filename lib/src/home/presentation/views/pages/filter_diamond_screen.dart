@@ -18,7 +18,10 @@ class FilterDiamondScreen extends StatelessWidget {
       create: (_) => FilterBloc(),
       child: Scaffold(
         appBar: AppBar(
-          title: AppTextWidget(text: AppStringKeys.filterDiamonds, textStyle: AppTextStyle.boldFont),
+          title: AppTextWidget(
+            text: AppStringKeys.filterDiamonds,
+            textStyle: AppTextStyle.boldFont,
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16),
@@ -37,7 +40,9 @@ class FilterDiamondScreen extends StatelessWidget {
                     max: 5.0,
                     values: RangeValues(state.minCarat, state.maxCarat),
                     onChanged: (values) {
-                      filterBloc.add(UpdateCaratRange(min: values.start, max: values.end));
+                      filterBloc.add(
+                        UpdateCaratRange(min: values.start, max: values.end),
+                      );
                     },
                   ),
                   const SizedBox(height: 20),
@@ -47,11 +52,14 @@ class FilterDiamondScreen extends StatelessWidget {
                     decoration: const InputDecoration(labelText: "Lab"),
                     value: state.selectedLab,
                     items:
-                        [
-                          'GIA',
-                          'IGI',
-                          'HRD',
-                        ].map((lab) => DropdownMenuItem(value: lab, child: Text(lab))).toList(),
+                        ['GIA', 'IGI', 'HRD']
+                            .map(
+                              (lab) => DropdownMenuItem(
+                                value: lab,
+                                child: Text(lab),
+                              ),
+                            )
+                            .toList(),
                     onChanged: (value) => filterBloc.add(UpdateLab(lab: value)),
                   ),
                   const SizedBox(height: 20),
@@ -61,18 +69,16 @@ class FilterDiamondScreen extends StatelessWidget {
                     decoration: const InputDecoration(labelText: "Shape"),
                     value: state.selectedShape,
                     items:
-                        [
-                          "BR",
-                          "CU",
-                          "EM",
-                          "MQ",
-                          "OV",
-                          "PR",
-                          "PS",
-                          "RAD",
-                          "HS",
-                        ].map((shape) => DropdownMenuItem(value: shape, child: Text(shape))).toList(),
-                    onChanged: (value) => filterBloc.add(UpdateShape(shape: value)),
+                        ["BR", "CU", "EM", "MQ", "OV", "PR", "PS", "RAD", "HS"]
+                            .map(
+                              (shape) => DropdownMenuItem(
+                                value: shape,
+                                child: Text(shape),
+                              ),
+                            )
+                            .toList(),
+                    onChanged:
+                        (value) => filterBloc.add(UpdateShape(shape: value)),
                   ),
                   const SizedBox(height: 20),
 
@@ -81,31 +87,48 @@ class FilterDiamondScreen extends StatelessWidget {
                     decoration: const InputDecoration(labelText: "Color"),
                     value: state.selectedColor,
                     items:
-                        [
-                          'D',
-                          'E',
-                          'F',
-                          'G',
-                          'H',
-                          'I',
-                          'J',
-                        ].map((color) => DropdownMenuItem(value: color, child: Text(color))).toList(),
-                    onChanged: (value) => filterBloc.add(UpdateColor(color: value)),
+                        ['D', 'E', 'F', 'G', 'H', 'I', 'J']
+                            .map(
+                              (color) => DropdownMenuItem(
+                                value: color,
+                                child: Text(color),
+                              ),
+                            )
+                            .toList(),
+                    onChanged:
+                        (value) => filterBloc.add(UpdateColor(color: value)),
                   ),
                   const SizedBox(height: 20),
 
                   // Clarity Chips
                   Wrap(
                     children:
-                        ['FL', 'IF', 'VVS1', 'VVS2', 'VS1', 'VS2', 'SI1', 'SI2', 'I1', 'I2', 'I3'].map((
-                          clarity,
-                        ) {
-                          final isSelected = state.selectedClarities.contains(clarity);
+                        [
+                          'FL',
+                          'IF',
+                          'VVS1',
+                          'VVS2',
+                          'VS1',
+                          'VS2',
+                          'SI1',
+                          'SI2',
+                          'I1',
+                          'I2',
+                          'I3',
+                        ].map((clarity) {
+                          final isSelected = state.selectedClarities.contains(
+                            clarity,
+                          );
                           return ChoiceChip(
                             label: Text(clarity),
                             selected: isSelected,
                             onSelected: (selected) {
-                              filterBloc.add(ToggleClarity(clarity: clarity, isSelected: selected));
+                              filterBloc.add(
+                                ToggleClarity(
+                                  clarity: clarity,
+                                  isSelected: selected,
+                                ),
+                              );
                             },
                           );
                         }).toList(),
@@ -124,7 +147,9 @@ class FilterDiamondScreen extends StatelessWidget {
                       );
                     },
                     child: AppTextWidget(
-                      text: context.appLocalizations.translate(AppStringKeys.search),
+                      text: context.appLocalizations.translate(
+                        AppStringKeys.search,
+                      ),
                       textStyle: AppTextStyle.regularFont,
                     ),
                   ),

@@ -11,10 +11,14 @@ class SortDiamondsUseCase {
 
     switch (sortOption) {
       case 'Final Price (Asc)':
-        sortedDiamonds.sort((a, b) => (a.finalAmount ?? 0).compareTo(b.finalAmount ?? 0));
+        sortedDiamonds.sort(
+          (a, b) => (a.finalAmount ?? 0).compareTo(b.finalAmount ?? 0),
+        );
         break;
       case 'Final Price (Desc)':
-        sortedDiamonds.sort((a, b) => (b.finalAmount ?? 0).compareTo(a.finalAmount ?? 0));
+        sortedDiamonds.sort(
+          (a, b) => (b.finalAmount ?? 0).compareTo(a.finalAmount ?? 0),
+        );
         break;
       case 'Carat Weight (Asc)':
         sortedDiamonds.sort((a, b) => (a.carat ?? 0).compareTo(b.carat ?? 0));

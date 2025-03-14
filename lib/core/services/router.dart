@@ -1,4 +1,5 @@
 import 'package:diamond_cart/src/home/domain/entities/diamond_filter_entity.dart';
+import 'package:diamond_cart/src/home/presentation/views/pages/diamond_cart_screen.dart';
 import 'package:diamond_cart/src/home/presentation/views/pages/diamond_list_screen.dart';
 import 'package:diamond_cart/src/home/presentation/views/pages/filter_diamond_screen.dart';
 import 'package:diamond_cart/src/home/presentation/views/pages/filtered_diamond_result_screen.dart';
@@ -15,6 +16,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         (_) => const FilterDiamondScreen(),
         settings: settings,
       );
+    case DiamondCartScreen.routeName:
+      return _pageBuilder((_) => const DiamondCartScreen(), settings: settings);
     case FilteredDiamondResultScreen.routeName:
       final DiamondFilterEntity diamondFilterEntity =
           args as DiamondFilterEntity;

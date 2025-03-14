@@ -6,6 +6,7 @@ import 'package:diamond_cart/src/home/domain/entities/diamond_data.dart';
 import 'package:diamond_cart/src/home/presentation/diamond_bloc/diamond_bloc.dart';
 import 'package:diamond_cart/src/home/presentation/diamond_bloc/diamond_event.dart';
 import 'package:diamond_cart/src/home/presentation/diamond_bloc/diamond_state.dart';
+import 'package:diamond_cart/src/home/presentation/views/pages/diamond_cart_screen.dart';
 import 'package:diamond_cart/src/home/presentation/views/pages/filter_diamond_screen.dart';
 import 'package:diamond_cart/src/home/presentation/views/widgets/diamond_detail_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,12 @@ class DiamondListScreen extends StatelessWidget {
           ),
           elevation: 4,
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+            IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, DiamondCartScreen.routeName);
+              },
+              icon: Icon(Icons.shopping_cart),
+            ),
             IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, FilterDiamondScreen.routeName);

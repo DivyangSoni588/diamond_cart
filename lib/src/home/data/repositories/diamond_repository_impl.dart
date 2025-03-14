@@ -23,4 +23,22 @@ class DiamondRepositoryImpl implements DiamondRepository {
     );
     return diamondData.diamonds ?? [];
   }
+
+  @override
+  Future<void> addDiamondToCart({Diamonds? diamonds}) {
+    // TODO: implement addDiamondToCart
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> getAllDiamondsAddedToCart() {
+    // TODO: implement getAllDiamondsAddedToCart
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> removeDiamondFromCart({String? lotId}) {
+    // TODO: implement removeDiamondFromCart
+    throw UnimplementedError();
+  }
 }

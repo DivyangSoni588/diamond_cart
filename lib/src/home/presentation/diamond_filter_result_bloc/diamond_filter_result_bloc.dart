@@ -9,10 +9,12 @@ import 'package:get_it/get_it.dart';
 part 'diamond_filter_result_event.dart';
 part 'diamond_filter_result_state.dart';
 
-class DiamondFilterResultBloc extends Bloc<DiamondFilterResultEvent, DiamondFilterResultState> {
+class DiamondFilterResultBloc
+    extends Bloc<DiamondFilterResultEvent, DiamondFilterResultState> {
   final GetFilteredDiamondUseCase _getFilteredDiamondUseCase =
       GetIt.instance.get<GetFilteredDiamondUseCase>();
-  final SortDiamondsUseCase _sortDiamondsUseCase = GetIt.instance.get<SortDiamondsUseCase>();
+  final SortDiamondsUseCase _sortDiamondsUseCase =
+      GetIt.instance.get<SortDiamondsUseCase>();
 
   List<Diamonds> _currentDiamonds = [];
   String? _currentSortOption;
@@ -21,10 +23,15 @@ class DiamondFilterResultBloc extends Bloc<DiamondFilterResultEvent, DiamondFilt
     on<SortDiamonds>(_onSortDiamonds);
   }
 
-  Future<void> _onLoadDiamonds(ApplyDiamondFilter event, Emitter<DiamondFilterResultState> emit) async {
+  Future<void> _onLoadDiamonds(
+    ApplyDiamondFilter event,
+    Emitter<DiamondFilterResultState> emit,
+  ) async {
     emit(DiamondFilterResultLoading());
     try {
-      final diamonds = await _getFilteredDiamondUseCase.execute(event.diamondFilterEntity);
+      final diamonds = await _getFilteredDiamondUseCase.execute(
+        event.diamondFilterEntity,
+      );
       _currentDiamonds = diamonds;
       emit(DiamondFilterResultLoaded(diamonds));
     } catch (e) {
@@ -32,12 +39,18 @@ class DiamondFilterResultBloc extends Bloc<DiamondFilterResultEvent, DiamondFilt
     }
   }
 
-  Future<void> _onSortDiamonds(SortDiamonds event, Emitter<DiamondFilterResultState> emit) async {
+  Future<void> _onSortDiamonds(
+    SortDiamonds event,
+    Emitter<DiamondFilterResultState> emit,
+  ) async {
     try {
       emit(DiamondFilterResultLoading());
 
       _currentSortOption = event.sortOption;
-      _currentDiamonds = _sortDiamondsUseCase.execute(_currentDiamonds, event.sortOption);
+      _currentDiamonds = _sortDiamondsUseCase.execute(
+        _currentDiamonds,
+        event.sortOption,
+      );
 
       emit(DiamondFilterResultLoaded(_currentDiamonds));
     } catch (e) {

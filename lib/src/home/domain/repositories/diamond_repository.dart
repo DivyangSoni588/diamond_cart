@@ -7,4 +7,10 @@ abstract class DiamondRepository {
   Future<List<Diamonds>> getDiamondsByFilter({
     DiamondFilterEntity? diamondFilterEntity,
   });
+
+  Future<void> removeDiamondFromCart({String? lotId});
+
+  Future<void> addDiamondToCart({Diamonds? diamonds});
+
+  Future<void> getAllDiamondsAddedToCart();
 }
