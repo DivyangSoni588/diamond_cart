@@ -8,23 +8,28 @@ import 'package:diamond_cart/src/home/presentation/views/widgets/diamond_detail_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FilteredDiamondResultScreen extends StatelessWidget {
+class FilteredDiamondResultScreen extends StatefulWidget {
   static const routeName = AppRouteConstants.filteredDiamondResultScreen;
   final DiamondFilterEntity diamondFilterEntity;
 
-  const FilteredDiamondResultScreen({
-    super.key,
-    required this.diamondFilterEntity,
-  });
+  const FilteredDiamondResultScreen({super.key, required this.diamondFilterEntity});
+
+  @override
+  State<FilteredDiamondResultScreen> createState() => _FilteredDiamondResultScreenState();
+}
+
+class _FilteredDiamondResultScreenState extends State<FilteredDiamondResultScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<DiamondFilterResultBloc>().add(ApplyDiamondFilter(widget.diamondFilterEntity));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: AppTextWidget(
-          text: AppStringKeys.filteredDiamonds,
-          textStyle: AppTextStyle.boldFont,
-        ),
+        title: AppTextWidget(text: AppStringKeys.filteredDiamonds, textStyle: AppTextStyle.boldFont),
         actions: [
           IconButton(
             onPressed: () {
@@ -34,78 +39,70 @@ class FilteredDiamondResultScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocProvider(
-        create:
-            (_) =>
-                DiamondFilterResultBloc()
-                  ..add(ApplyDiamondFilter(diamondFilterEntity)),
-        child: BlocBuilder<DiamondFilterResultBloc, DiamondFilterResultState>(
-          builder: (context, state) {
-            if (state is DiamondFilterResultLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is DiamondFilterResultLoaded) {
-              if (state.diamonds.isEmpty) {
-                return Center(
-                  child: AppTextWidget(
-                    text: AppStringKeys.noDataFound,
-                    textStyle: AppTextStyle.regularBoldFont,
-                  ),
-                );
-              }
-              return ListView.builder(
-                itemCount: state.diamonds.length,
-                itemBuilder: (context, index) {
-                  return DiamondDetailWidget(diamonds: state.diamonds[index]);
-                },
-              );
-            } else if (state is DiamondFilterResultError) {
+      body: BlocBuilder<DiamondFilterResultBloc, DiamondFilterResultState>(
+        builder: (context, state) {
+          if (state is DiamondFilterResultLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is DiamondFilterResultLoaded) {
+            if (state.diamonds.isEmpty) {
               return Center(
-                child: Text(
-                  state.message,
-                  style: const TextStyle(color: Colors.red),
+                child: AppTextWidget(
+                  text: AppStringKeys.noDataFound,
+                  textStyle: AppTextStyle.regularBoldFont,
                 ),
               );
             }
-            return const Center(child: Text("Apply filters to see results."));
-          },
-        ),
+            return ListView.builder(
+              itemCount: state.diamonds.length,
+              itemBuilder: (context, index) {
+                return DiamondDetailWidget(diamonds: state.diamonds[index]);
+              },
+            );
+          } else if (state is DiamondFilterResultError) {
+            return Center(child: Text(state.message, style: const TextStyle(color: Colors.red)));
+          }
+          return const Center(child: Text("Apply filters to see results."));
+        },
       ),
     );
   }
 
   void _showSortModal(BuildContext context) {
+    final diamondFilterResultBloc = BlocProvider.of<DiamondFilterResultBloc>(context);
+
     final List<String> sortOptions = [
       'Final Price (Asc)',
       'Final Price (Desc)',
       'Carat Weight (Asc)',
       'Carat Weight (Desc)',
     ];
+
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Sort by:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              ...sortOptions.map(
-                (option) => ListTile(
-                  title: Text(option),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
+      builder: (bottomSheetContext) {
+        return BlocProvider.value(
+          // ✅ Pass the existing Bloc instance
+          value: diamondFilterResultBloc,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Sort by:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                SizedBox(height: 10),
+                ...sortOptions.map(
+                  (option) => ListTile(
+                    title: Text(option),
+                    onTap: () {
+                      diamondFilterResultBloc.add(SortDiamonds(option)); // ✅ Trigger sorting
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

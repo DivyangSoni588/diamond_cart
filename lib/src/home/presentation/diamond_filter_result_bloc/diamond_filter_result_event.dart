@@ -13,3 +13,8 @@ class ApplyDiamondFilter extends DiamondFilterResultEvent {
   @override
   List<Object?> get props => [diamondFilterEntity];
 }
+
+class SortDiamonds extends DiamondFilterResultEvent {
+  final String sortOption;
+  SortDiamonds(this.sortOption);
+}
